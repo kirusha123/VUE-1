@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 import Hello from './components/Hello';
 
 export default {
@@ -18,6 +19,7 @@ export default {
 <style>
     #app{
         display: flex;
-        justify-content: center;
+        align-content: center;
+        height: 600px;
     }
 </style>
