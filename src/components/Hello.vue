@@ -55,6 +55,110 @@
                         </div>
                     </div>
                 </li>
+                <li>
+                    <tr>
+                        <td>
+                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
+                        </td>
+                    </tr>
+                    <div class="side_menu">
+                        <div class="float-left">
+                            <div class="dumper">A</div>
+                            <div class="changer">B</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <tr>
+                        <td>
+                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
+                        </td>
+                    </tr>
+                    <div class="side_menu">
+                        <div class="float-left">
+                            <div class="dumper">A</div>
+                            <div class="changer">B</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <tr>
+                        <td>
+                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
+                        </td>
+                    </tr>
+                    <div class="side_menu">
+                        <div class="float-left">
+                            <div class="dumper">A</div>
+                            <div class="changer">B</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <tr>
+                        <td>
+                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
+                        </td>
+                    </tr>
+                    <div class="side_menu">
+                        <div class="float-left">
+                            <div class="dumper">A</div>
+                            <div class="changer">B</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <tr>
+                        <td>
+                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
+                        </td>
+                    </tr>
+                    <div class="side_menu">
+                        <div class="float-left">
+                            <div class="dumper">A</div>
+                            <div class="changer">B</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <tr>
+                        <td>
+                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
+                        </td>
+                    </tr>
+                    <div class="side_menu">
+                        <div class="float-left">
+                            <div class="dumper">A</div>
+                            <div class="changer">B</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <tr>
+                        <td>
+                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
+                        </td>
+                    </tr>
+                    <div class="side_menu">
+                        <div class="float-left">
+                            <div class="dumper">A</div>
+                            <div class="changer">B</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <tr>
+                        <td>
+                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
+                        </td>
+                    </tr>
+                    <div class="side_menu">
+                        <div class="float-left">
+                            <div class="dumper">A</div>
+                            <div class="changer">B</div>
+                        </div>
+                    </div>
+                </li>
                  <li>
                     <tr>
                         <td>
@@ -94,7 +198,6 @@
         max-height: 400px;
         min-width: 400px;
         max-width: 400px;
-        border: solid 1px white;
     }
     .form{
         height: auto;
