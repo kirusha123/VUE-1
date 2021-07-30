@@ -2,174 +2,17 @@
     <div class="section">
         <div class="form">
             <div class="header">
-                    <span>TODOS MANAGER</span>
+                <span>TODOS MANAGER</span>
             </div>
-            <input id="task_in" placeholder="Enter your's todo =)"  class="input">
+            <input id="task_input" placeholder="Enter your's todo =)"  class="input" v-bind="newTodo" v-on:input="newTodo = $event.target" @keyup.enter="addTodo(newTodo)">
             <ul>
-                <!--<li>
-                    <div class="float-left">
-                        <span id="l_id" class="id">2</span>
-                        <span class="ml-10 ">Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</span>
-                    </div>
+                <li v-for="el in arr" v-bind:key="el" >
+                   <div class="float-left">
+                        <span>{{ el }}</span>
+                   </div>
                     <div class="float-right">
-                        <div class="changer"> boba</div>
-                        <div class="dumper float-right">a</div>
-                    </div>
-                </li>-->
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                 <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                 <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
-                    </div>
-                </li>
-                 <li>
-                    <tr>
-                        <td>
-                            <div>Bla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla BlaBla Bla</div>
-                        </td>
-                    </tr>
-                    <div class="side_menu">
-                        <div class="float-left">
-                            <div class="dumper">A</div>
-                            <div class="changer">B</div>
-                        </div>
+                        <span class="changer">A</span>
+                        <span class="dumper">B</span>
                     </div>
                 </li>
             </ul>
@@ -180,8 +23,18 @@
 <script>
     export default {
         name : "Hello",
-        props : {
-            msg : String
+        data: function(){
+                return{
+                    arr:[]
+                }
+            }
+        ,
+        methods:{
+            addTodo: function(newTodo){
+                this.arr.push(newTodo.value);
+                alert(this.arr.length);
+                newTodo.value = "";
+            }
         }
     };
 </script>
@@ -195,14 +48,12 @@
 
     .section{
         margin: auto;
-        max-height: 400px;
         min-width: 400px;
         max-width: 400px;
     }
     .form{
         height: auto;
         width: auto;
-        max-height: 400px;
         min-width: 400px;
     }
     .float-left{
@@ -215,7 +66,6 @@
     .ml-10{
         margin-left: 10px;
     }
-
 
     .header{
         font-family: 'TestFont';
@@ -257,62 +107,42 @@
     ul{
         margin: 5px;
         padding-left: 0;
-        max-height: 290px;
         overflow-y: auto;
         overflow-x: hidden;
     }
 
     li {
-        font-family: 'TestFont';
-        font-weight: 700;
-        font-size: 1.5rem;
-        margin-bottom: 2px;
-        margin-right: 5px;    
-        list-style-type: none;
-        background-color: white;
         border-bottom: solid 1px #CACACA;
         border-top: solid 1px #CACACA;
-        border-radius: 10px;
-        width: 100%;
-        overflow-x: auto;
-
+        border-radius: 7px;
+        font-family: 'TestFont';
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        background-color: #fff;
     }
 
-    li::-webkit-scrollbar { 
-        display: none;
-        width: 0; 
+    li .float-left{
+        margin-left: 15px;
     }
 
-    td div{
-
-        font-size: 1.5rem;
-        display: inline-block;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+    li .changer{
+        margin-right: 10px;
+        margin-left: 10px;
     }
 
-    .side_menu{
-        position: absolute;
-        display: inline-block;
-        transform: translate(400px,-28px);
+    li .dumper {
+        margin-right: 10px;
     }
 
-    li:hover .side_menu .float-left{
-        visibility: visible;
-        
+    li .changer:hover {
+        cursor: pointer;
+        font-weight: 900;
     }
-    .side_menu .float-left{
-        visibility: hidden;
-    }
-
-    .dumper{
-        display: inline-block;
-        margin-left: 0.5rem;
-    }
-    .changer{
-        display: inline-block;
-        margin-left:1rem;
+    li .dumper:hover{
+        cursor: pointer;
+        font-weight: 900;
     }
 
 </style>
