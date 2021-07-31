@@ -4,37 +4,50 @@
             <div class="header">
                 <span>TODOS MANAGER</span>
             </div>
-            <input id="task_input" placeholder="Enter your's todo =)"  class="input" v-bind="newTodo" v-on:input="newTodo = $event.target" @keyup.enter="addTodo(newTodo)">
+            <input id="task_input" 
+                placeholder="Enter your's todo =)"  
+                class="input" 
+                v-bind="newTodo" 
+                @keyup.enter="addTodo( $event.target)"
+                >
             <ul>
-                <li v-for="el in arr" v-bind:key="el" >
-                   <div class="float-left">
-                        <span>{{ el }}</span>
-                   </div>
-                    <div class="float-right">
-                        <span class="changer">A</span>
-                        <span class="dumper">B</span>
-                    </div>
-                </li>
+                <TodoItem  
+                    v-for="(todo, i) in arr"
+                    v-bind:todo="todo"
+                    v-bind:key="todo.id"
+                    v-bind:index="i"
+                    v-on:rm-todo="removeTodo"
+                />
             </ul>
         </div>
     </div>
 </template>
 
 <script>
+    import TodoItem from "./TodoItem"
     export default {
-        name : "Hello",
-        data: function(){
-                return{
-                    arr:[]
-                }
+        name : "TodoList",
+        data() {
+            return{
+                arr:[],
+                index:0,
+                newTodo:""
             }
-        ,
+        },
         methods:{
-            addTodo: function(newTodo){
-                this.arr.push(newTodo.value);
-                alert(this.arr.length);
-                newTodo.value = "";
+            addTodo: function(nt){
+                if (nt.value != ""){
+                    this.arr.push({id:this.index, title:nt.value, completed:false});
+                    this.index += 1;
+                    nt.value = "";
+                }
+            },
+            removeTodo(id) {
+                this.arr = this.arr.filter(todo => todo.id !== id);
             }
+        },
+        components:{
+            TodoItem
         }
     };
 </script>
@@ -110,39 +123,4 @@
         overflow-y: auto;
         overflow-x: hidden;
     }
-
-    li {
-        border-bottom: solid 1px #CACACA;
-        border-top: solid 1px #CACACA;
-        border-radius: 7px;
-        font-family: 'TestFont';
-        height: 2rem;
-        line-height: 2rem;
-        font-size: 1.3rem;
-        font-weight: 600;
-        background-color: #fff;
-    }
-
-    li .float-left{
-        margin-left: 15px;
-    }
-
-    li .changer{
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-
-    li .dumper {
-        margin-right: 10px;
-    }
-
-    li .changer:hover {
-        cursor: pointer;
-        font-weight: 900;
-    }
-    li .dumper:hover{
-        cursor: pointer;
-        font-weight: 900;
-    }
-
 </style>

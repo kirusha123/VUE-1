@@ -1,17 +1,17 @@
 <template>
     <div id="app">
-        <Hello msg="Hello World!"/>
+        <TodoList/>
     </div>
 </template>
 
 <script>
 
-import Hello from './components/Hello';
+import TodoList from './components/TodoList.vue';
 
 export default {
     name: "App",
     components: {
-        Hello
+        TodoList
     }
 }
 </script>
@@ -22,4 +22,5 @@ export default {
         align-content: center;
         height: 600px;
     }
+
 </style>
