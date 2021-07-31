@@ -1,9 +1,9 @@
 <template>
-  <li>
-    <span v-bind:class="{done: todo.completed}">
+  <li v-bind:class="{done: todo.completed}" >
+    <span>
       <input type="checkbox"
              v-on:change="completed">
-      <strong>{{index + 1}}</strong>
+      <strong class="idx">{{index + 1}}:</strong>
       {{todo.title | uppercase}}
     </span>
     <button class="rm"
@@ -37,33 +37,56 @@ export default {
 </script>
 
 <style scoped>
-  li {
-    border-bottom: solid 1px #CACACA;
-    border-top: solid 1px #CACACA;
-    border-radius: 7px;
-    font-family: 'TestFont';
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    padding: .0rem 2rem;
-    margin-bottom: 1rem;
-  }
+    li {
+        border-bottom: solid 1px #CACACA;
+        border-top: solid 1px #CACACA;
+        border-radius: 7px;
+        font-family: 'TestFont';
+        font-size: 1.3rem;
+        font-weight: 900;
+        background-color: #fff;
+        border: 1px solid #cacaca;
+        display: flex;
+        justify-content: space-between;
+        padding: .0rem 2rem;
+        margin-bottom: 0.2rem;
+        height: 2rem;
+        line-height: 2rem;
+    }
 
-  .rm {
-    background: red;
-    color: #fff;
-    border-radius: 50%;
-    font-weight: bold;
-  }
+    .li:hover{
+        border-bottom-color: green;
+        border-top-color: green;
+    }
 
-  input {
-    margin-right: 1rem;
-  }
+    .idx{
+        margin: 0 0.2rem;
+    }
 
-  .done {
-    text-decoration: line-through;
-  }
+    .rm {
+        margin:0.25rem 0;
+        background: red;
+        color: #fff;
+        border-radius: 50%;
+        font-weight: bold;
+    }
+
+    .rm:hover{
+        background-color: rgb(167, 2, 2);
+    }
+
+    input {
+        margin-right: 1rem;
+    }
+
+    .done span{
+        text-decoration: line-through;
+    }
+
+    .done {
+        background-color: rgb(115, 116, 114);
+    }
+
+
+
 </style>
