@@ -10,31 +10,53 @@
                 v-bind="newTodo" 
                 @keyup.enter="addTodo( $event.target)"
                 >
+            <template v-if="loading" class="loading">
+                <h1>Загрузка</h1>
+            </template>
+            <template v-else>
             <ul>
                 <TodoItem  
                     v-for="(todo, i) in arr"
                     v-bind:todo="todo"
-                    v-bind:key="todo.id"
+                    v-bind:key="todo.t_id"
                     v-bind:index="i"
                     v-on:rm-todo="removeTodo"
                 />
             </ul>
+            </template>
         </div>
     </div>
 </template>
 
 <script>
     import TodoItem from "./TodoItem"
+    import axios from 'axios';
     export default {
         name : "TodoList",
         data() {
             return{
                 arr:[],
                 index:0,
-                newTodo:""
+                newTodo:"",
+                loading:false,
             }
         },
+        created(){
+            this.getData();
+        },
         methods:{
+            getData(){
+                this.loading = true;
+                axios.get("http://localhost:5050/api/get/todos")
+                    .then(res=>{
+                        this.loading = false;
+                        this.arr = res.data;
+                    })
+                    .catch(e=>{
+                        this.loading=false;
+                        console.log(e);
+                    })
+            },
             addTodo: function(nt){
                 if (nt.value != ""){
                     this.arr.push({id:this.index, title:nt.value, completed:false});
@@ -43,7 +65,15 @@
                 }
             },
             removeTodo(id) {
-                this.arr = this.arr.filter(todo => todo.id !== id);
+                const url = "http://localhost:5050/api/delete/todo/"+id;
+                console.log(url);
+                axios.delete(url).then(res=>{
+                    console.log(res);
+                    this.arr = this.arr.filter(todo => todo.t_id !== id);
+                }).catch(e=>{
+                    console.log(e);
+                });
+                
             }
         },
         components:{
@@ -57,6 +87,11 @@
     @font-face {
         font-family: 'TestFont';
         src: url("../fonts/ZenLoop-Regular.ttf");
+    }
+
+    .loading{
+        text-align: center;
+        margin:auto;
     }
 
     .section{

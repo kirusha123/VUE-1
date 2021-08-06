@@ -20,6 +20,13 @@ const fake_data =
 
 app.use(bodyParser.json())
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+    next();
+  });
+
 
 app.get("/",(req, res)=>{
     res.redirect("/api")
@@ -43,6 +50,22 @@ app.get("/api/get/todos", async (req, res)=>{
         console.log(e.message)
     }
     
+});
+
+app.get("/api/get/todo/:id", async (req, res)=>{
+    try {
+        const todo = await Todo.findOne({t_id:req.params.id})
+        if (todo){
+            return res.status(200).json(todo);
+        }else{
+            return res.json();
+        }
+    } catch (e) {
+        res.status(500).json({
+            "message": e.message
+        })
+        console.log(e.message)
+    }
 });
 
 app.post("/api/post/todo", 
@@ -83,29 +106,17 @@ async (req, res)=>{
 
 });
 
-app.get("/api/get/todo/:id", async (req, res)=>{
+app.delete("/api/delete/todo/:id", async (req, res)=>{
     try {
-        const todo = await Todo.findOne({t_id:req.params.id})
-        if (todo){
-            return res.status(200).json(todo);
-        }else{
-            return res.json();
-        }
-    } catch (e) {
+       await Todo.deleteOne({t_id: req.params.id});
+       res.status(200).json({message:"todo was deleted successfully"});
+    } 
+    catch(e) {
         res.status(500).json({
             "message": e.message
         })
-        console.log(e.message)
+        console.log(e.message);
     }
-    /*const id = req.params.id;
-    let result = [];
-    fake_data.forEach(element => {
-        if (element.id.toString() == id.toString()){
-            result.push(element);
-        }
-    });
-    res.send(JSON.stringify(result));
-    console.log(result);*/
 });
 
 async function start() {
