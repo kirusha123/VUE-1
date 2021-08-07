@@ -42,6 +42,7 @@ app.get("/api/get/todos", async (req, res)=>{
         if (!todos){
             return res.send(JSON.stringify());
         }
+        console.log(todos)
         res.send(JSON.stringify(todos));
     }catch(e){
         res.status(500).json({
@@ -56,6 +57,7 @@ app.get("/api/get/todo/:id", async (req, res)=>{
     try {
         const todo = await Todo.findOne({t_id:req.params.id})
         if (todo){
+            console.log(todo)
             return res.status(200).json(todo);
         }else{
             return res.json();
@@ -84,13 +86,12 @@ async (req, res)=>{
                 message:"Incorrect todo data"
             })
         }
-
+        console.log(req.body)
         const {id,title,completed} = req.body;
         const candidate = await Todo.findOne({t_id:id});
         if (candidate){
             return res.status(400).json({message: "Error id already exists"});
         }
-        console.log(id);
         const todo = new Todo({t_id:id, title:title, completed:completed});
 
         await todo.save();

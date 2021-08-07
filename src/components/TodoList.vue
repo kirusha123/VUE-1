@@ -31,6 +31,7 @@
 <script>
     import TodoItem from "./TodoItem"
     import axios from 'axios';
+    import uniqid from "uniqid"
     export default {
         name : "TodoList",
         data() {
@@ -59,8 +60,27 @@
             },
             addTodo: function(nt){
                 if (nt.value != ""){
-                    this.arr.push({id:this.index, title:nt.value, completed:false});
-                    this.index += 1;
+                    
+                    let id = uniqid();
+                    let title = nt.value;
+                    /* проверка на уже существующий t_id == id*/
+
+                    axios.post("http://localhost:5050/api/post/todo",
+                                { 
+                                    id:id,
+                                    title:title,
+                                    completed:false
+                                })
+                    .then(res =>{
+                        console.log(res.data);
+                        this.arr.push({t_id:id,
+                                title:title,
+                                completed:false
+                            })
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
                     nt.value = "";
                 }
             },
@@ -69,6 +89,7 @@
                 console.log(url);
                 axios.delete(url).then(res=>{
                     console.log(res);
+                    
                     this.arr = this.arr.filter(todo => todo.t_id !== id);
                 }).catch(e=>{
                     console.log(e);

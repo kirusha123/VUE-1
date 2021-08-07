@@ -2,13 +2,18 @@
   <li v-bind:class="{done: todo.completed}" >
     <span>
       <input type="checkbox"
-             v-on:change="completed">
+             @click="completed"
+             ref="input">
       <strong class="idx">{{index + 1}}:</strong>
       {{todo.title | uppercase}}
     </span>
+    <button class="change">
+        c
+    </button>
     <button class="rm"
             v-on:click="$emit('rm-todo', todo.t_id)"
     >&times;</button>
+
   </li>
 </template>
 
@@ -21,6 +26,17 @@ export default {
             required: true
         },
         index:Number
+    },
+    data(){
+        return {
+            perv_compl:false 
+        }
+    },
+    created(){
+        if (this.todo.completed){
+            console.log()
+            this.todo.completed=!this.todo.completed;
+        }
     },
     methods:{
         completed(){
@@ -61,6 +77,13 @@ export default {
 
     .idx{
         margin: 0 0.2rem;
+    }
+
+    .change{
+        border-radius: 45%;
+        margin:0.25rem 0;
+        margin-right:-52%;
+        background-color: rgb(6, 214, 41);
     }
 
     .rm {
