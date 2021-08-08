@@ -120,11 +120,39 @@ app.delete("/api/delete/todo/:id", async (req, res)=>{
     }
 });
 
+app.put("/api/put/todo", 
+[
+    check('id', "incorrect id").isLength({min:1}),
+    check('title', "incorrect title").isLength({min:1}),
+    check('completed', "incorrect completed").isBoolean()
+],
+async (req,res)=>{
+    try{
+        validationResult(req.body);
+        let todo = {
+            t_id: req.body.id,
+            title:  req.body.title,
+            completed:  req.body.completed
+        }
+        console.log(todo);
+
+        await Todo.findOneAndUpdate({t_id:todo.t_id},todo,{ new: true});
+        res.status(201).json({message:"OK"});
+
+    }catch(e){
+        res.status(500).json({
+            "message": e.message
+        })
+        console.log(e.message)
+    }
+});
+
 async function start() {
     try{
         await mongoose.connect(config.get('mongoUri'),{
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            useFindAndModify: false 
         });
         app.listen(port, ()=>console.log('app has been started on http://localhost:',port));
     }catch(e){

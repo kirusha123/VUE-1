@@ -3,13 +3,11 @@
     <span>
       <input type="checkbox"
              @click="completed"
-             ref="input">
+             ref="input"
+             v-model="this.todo.completed">
       <strong class="idx">{{index + 1}}:</strong>
       {{todo.title | uppercase}}
     </span>
-    <button class="change">
-        c
-    </button>
     <button class="rm"
             v-on:click="$emit('rm-todo', todo.t_id)"
     >&times;</button>
@@ -19,6 +17,7 @@
 
 
 <script>
+import axios from "axios"
 export default {
     props:{
         todo: {
@@ -32,15 +31,21 @@ export default {
             perv_compl:false 
         }
     },
-    created(){
-        if (this.todo.completed){
-            console.log()
-            this.todo.completed=!this.todo.completed;
-        }
-    },
     methods:{
         completed(){
             this.todo.completed = !this.todo.completed;
+            axios.put("http://localhost:5050/api/put/todo",
+                                { 
+                                    id:this.todo.t_id,
+                                    title:this.todo.title,
+                                    completed:this.todo.completed
+                                })
+                                .then(res=>{
+                                    console.log(res);
+                                }).catch(e=>{
+                                    console.log(e);
+                                })
+
         }
     },
     filters: {
@@ -84,6 +89,10 @@ export default {
         margin:0.25rem 0;
         margin-right:-52%;
         background-color: rgb(6, 214, 41);
+    }
+
+    .change:hover{
+        background-color: rgb(5, 170, 5);
     }
 
     .rm {
