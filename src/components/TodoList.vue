@@ -43,12 +43,13 @@
             }
         },
         created(){
+            axios.defaults.baseURL = 'http://localhost:5050/api'
             this.getData();
         },
         methods:{
             getData(){
                 this.loading = true;
-                axios.get("http://localhost:5050/api/get/todos")
+                axios.get("/todos")
                     .then(res=>{
                         this.loading = false;
                         this.arr = res.data;
@@ -65,7 +66,7 @@
                     let title = nt.value;
                     /* проверка на уже существующий t_id == id*/
 
-                    axios.post("http://localhost:5050/api/post/todo",
+                    axios.post("/todo",
                                 { 
                                     id:id,
                                     title:title,
@@ -85,7 +86,7 @@
                 }
             },
             removeTodo(id) {
-                const url = "http://localhost:5050/api/delete/todo/"+id;
+                const url = "/todo/"+id;
                 console.log(url);
                 axios.delete(url).then(res=>{
                     console.log(res);

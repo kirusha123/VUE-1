@@ -21,7 +21,7 @@ const fake_data =
 app.use(bodyParser.json())
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     next();
@@ -36,13 +36,13 @@ app.get("/api",async (req, res)=>{
     res.send("<h1>Api:</h1><h2>api/get/todos</h2><h2>api/get/todo/:id</h2>");
 });
 
-app.get("/api/get/todos", async (req, res)=>{
+app.get("/api/todos", async (req, res)=>{
     try{
         const todos = await Todo.find();
         if (!todos){
             return res.send(JSON.stringify());
         }
-        console.log(todos)
+        //console.log(todos)
         res.send(JSON.stringify(todos));
     }catch(e){
         res.status(500).json({
@@ -53,11 +53,11 @@ app.get("/api/get/todos", async (req, res)=>{
     
 });
 
-app.get("/api/get/todo/:id", async (req, res)=>{
+app.get("/api/todo/:id", async (req, res)=>{
     try {
         const todo = await Todo.findOne({t_id:req.params.id})
         if (todo){
-            console.log(todo)
+            //console.log(todo)
             return res.status(200).json(todo);
         }else{
             return res.json();
@@ -70,7 +70,7 @@ app.get("/api/get/todo/:id", async (req, res)=>{
     }
 });
 
-app.post("/api/post/todo", 
+app.post("/api/todo", 
 [
     check('id', "incorrect id").isLength({min:1}),
     check('title', "incorrect title").isLength({min:1}),
@@ -86,7 +86,7 @@ async (req, res)=>{
                 message:"Incorrect todo data"
             })
         }
-        console.log(req.body)
+        //console.log(req.body)
         const {id,title,completed} = req.body;
         const candidate = await Todo.findOne({t_id:id});
         if (candidate){
@@ -107,7 +107,7 @@ async (req, res)=>{
 
 });
 
-app.delete("/api/delete/todo/:id", async (req, res)=>{
+app.delete("/api/todo/:id", async (req, res)=>{
     try {
        await Todo.deleteOne({t_id: req.params.id});
        res.status(200).json({message:"todo was deleted successfully"});
@@ -120,7 +120,7 @@ app.delete("/api/delete/todo/:id", async (req, res)=>{
     }
 });
 
-app.put("/api/put/todo", 
+app.put("/api/todo", 
 [
     check('id', "incorrect id").isLength({min:1}),
     check('title', "incorrect title").isLength({min:1}),
@@ -134,7 +134,7 @@ async (req,res)=>{
             title:  req.body.title,
             completed:  req.body.completed
         }
-        console.log(todo);
+        //console.log(todo);
 
         await Todo.findOneAndUpdate({t_id:todo.t_id},todo,{ new: true});
         res.status(201).json({message:"OK"});

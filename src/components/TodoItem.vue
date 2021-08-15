@@ -28,14 +28,16 @@ export default {
     },
     data(){
         return {
-            perv_compl:false 
+            perv_compl:false,
         }
+    },
+    created(){
+        axios.defaults.baseURL= 'http://localhost:5050/api';
     },
     methods:{
         completed(){
             this.todo.completed = !this.todo.completed;
-            axios.put("http://localhost:5050/api/put/todo",
-                                { 
+            axios.put("/todo", { 
                                     id:this.todo.t_id,
                                     title:this.todo.title,
                                     completed:this.todo.completed
