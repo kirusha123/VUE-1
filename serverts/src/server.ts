@@ -1,16 +1,17 @@
-const express = require("express");
-const {validationResult, check} = require("express-validator")
-const bodyParser = require("body-parser")
-const mongoose = require("mongoose")
-const config = require("config")
-const Todo = require("./models/Todo")
-const app = express();
+import express, {Application, Request, Response, NextFunction} from "express";
+const app:Application = express();
+import  {validationResult, check} from "express-validator"
+import bodyParser from "body-parser"
+import mongoose from "mongoose"
+import config from "config"
+import Todo, {TodoInterface} from "./Models/Todo"
 
-const port = config.get("port") || 5050;
+
+const port:Number = config.get("port") || 5050;
 
 app.use(bodyParser.json())
 
-app.use(function(req, res, next) {
+app.use(function(req:Request, res:Response, next:NextFunction) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
@@ -18,19 +19,19 @@ app.use(function(req, res, next) {
   });
 
 
-app.get("/",(req, res)=>{
+app.get("/",(req:Request, res:Response)=>{
     res.redirect("/api")
 });
 
-app.get("/api",async (req, res)=>{
+app.get("/api",async (req:Request, res:Response)=>{
     res.send("<h1>Api:</h1><h2>api/get/todos</h2><h2>api/get/todo/:id</h2>");
 });
 
-app.get("/api/todos", async (req, res)=>{
+app.get("/api/todos", async (req:Request, res:Response)=>{
     try{
-        const todos = await Todo.find();
+        const todos:TodoInterface[] = await Todo.find();
         if (!todos){
-            return res.send(JSON.stringify());
+            return res.json();
         }
         //console.log(todos)
         res.send(JSON.stringify(todos));
@@ -43,9 +44,9 @@ app.get("/api/todos", async (req, res)=>{
     
 });
 
-app.get("/api/todo/:id", async (req, res)=>{
+app.get("/api/todo/:id", async (req:Request, res:Response)=>{
     try {
-        const todo = await Todo.findOne({t_id:req.params.id})
+        const todo:TodoInterface|null = await Todo.findOne({t_id:req.params.id})
         if (todo){
             //console.log(todo)
             return res.status(200).json(todo);
@@ -66,7 +67,7 @@ app.post("/api/todo",
     check('title', "incorrect title").isLength({min:1}),
     check('completed', "incorrect completed").isBoolean()
 ],
-async (req, res)=>{
+async (req:Request, res:Response)=>{
     try{
         const errors = validationResult(req)
 
@@ -78,11 +79,11 @@ async (req, res)=>{
         }
         //console.log(req.body)
         const {id,title,completed} = req.body;
-        const candidate = await Todo.findOne({t_id:id});
+        const candidate:(TodoInterface|null) = await Todo.findOne({t_id:id});
         if (candidate){
             return res.status(400).json({message: "Error id already exists"});
         }
-        const todo = new Todo({t_id:id, title:title, completed:completed});
+        const todo:TodoInterface&mongoose.Document<any,any,TodoInterface> = new Todo({t_id:id, title:title, completed:completed});
 
         await todo.save();
 
@@ -97,7 +98,7 @@ async (req, res)=>{
 
 });
 
-app.delete("/api/todo/:id", async (req, res)=>{
+app.delete("/api/todo/:id", async (req:Request, res:Response)=>{
     try {
        await Todo.deleteOne({t_id: req.params.id});
        res.status(200).json({message:"todo was deleted successfully"});
@@ -116,7 +117,7 @@ app.put("/api/todo",
     check('title', "incorrect title").isLength({min:1}),
     check('completed', "incorrect completed").isBoolean()
 ],
-async (req,res)=>{
+async (req:Request, res:Response)=>{
     try{
         validationResult(req.body);
         let todo = {
