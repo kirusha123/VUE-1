@@ -1,0 +1,4 @@
+{
+    "port": 5050,
+    "mongoUri": "mongodb+srv://root:root@cluster0.hubuz.mongodb.net/todo-app?retryWrites=true&w=majority"
+}
