@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  todolist-front:
+    build: ./
+    command: serve -s docs
+    ports:
+    - 8080:5000
+    restart: always
+
+  server-ts:
+    build: ./serverts
+    command: npm start
+    ports: 
+    - 5050:5050
+    restart: always
+    depends_on:
+    - todolist-front
+  
+  
